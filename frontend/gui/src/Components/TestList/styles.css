@@ -1,0 +1,43 @@
+.ant-btn.test-select-button {
+  max-width: 150px;
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 50px;
+}
+
+.test-selector {
+  margin-left: 40%;
+  margin-right: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.ant-card.test-card {
+  margin-left: 35%;
+  margin-right: 35%;
+}
+
+.action-panel {
+  margin-top: 20px;
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 32px;
+  height: 32px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.icon svg:hover {
+  cursor: pointer;
+}
+
+.new-question-title-input {
+  width: 50%;
+}
