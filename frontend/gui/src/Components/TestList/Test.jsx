@@ -41,7 +41,7 @@ export function Test(props) {
       <Card className="test-card" title={props.test.title}>
         {questions.map(question => (
           <Card title={question.text}>
-            <Input placeholder="" onChange={() => {}} />
+            <Input placeholder="Введите ответ" onChange={() => {}} />
           </Card>
         ))}
         {isAdding && (
@@ -56,7 +56,7 @@ export function Test(props) {
               />
             }
           >
-            <Input placeholder="" onChange={() => {}} />
+            <Input placeholder="Введите ответ" onChange={() => {}} />
           </Card>
         )}
       </Card>

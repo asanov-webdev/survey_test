@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchTests, addTest } from "../../api";
+import { fetchTests, addTest, addQuestionToTest } from "../../api";
 import { Button, Icon, Card, Input } from "antd";
 import "./styles.css";
 import { Test } from "./Test";
@@ -8,7 +8,6 @@ export function TestList() {
   const [tests, setTests] = useState([]);
   const [activeTest, setActiveTest] = useState(null);
   const [isAddingTest, setIsAddingTest] = useState(false);
-  const [isAddingQuestion, setIsAddingQuestion] = useState(false);
   const [newTest, setNewTest] = useState();
   const [newQuestions, setNewQuestions] = useState([
     {
@@ -16,6 +15,20 @@ export function TestList() {
       positionInTest: 1
     }
   ]);
+
+  function saveTest() {
+    addTest(newTest);
+    fetchTests().then(tests => {
+      const testId = tests.find(test => test.title === newTest.title).id;
+      let questions = [];
+      for (let i = 0; i < newQuestions.length; i++) {
+        questions.push({ ...newQuestions[i], test: testId });
+      }
+      for (let i = 0; i < questions.length; i++) {
+        addQuestionToTest(questions[i]);
+      }
+    });
+  }
 
   useEffect(() => {
     fetchTests().then(tests => {
@@ -145,9 +158,7 @@ export function TestList() {
             <Icon
               className="accept-icon icon"
               type="check"
-              onClick={() => {
-                setIsAddingQuestion(false);
-              }}
+              onClick={() => saveTest()}
             />
             <Icon
               className="decline-icon icon"
