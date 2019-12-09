@@ -1,12 +1,12 @@
 .ant-btn.test-select-button {
   max-width: 150px;
-  margin-top: 50px;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 50px;
 }
 
 .test-selector {
+  margin-top: 50px;
   margin-left: 40%;
   margin-right: 40%;
   display: flex;

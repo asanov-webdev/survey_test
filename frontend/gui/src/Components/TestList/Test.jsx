@@ -41,7 +41,6 @@ export function Test(props) {
       <Card className="test-card" title={props.test.title}>
         {questions.map(question => (
           <Card title={question.text}>
-            {" "}
             <Input placeholder="" onChange={() => {}} />
           </Card>
         ))}

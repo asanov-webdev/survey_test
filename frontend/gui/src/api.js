@@ -22,3 +22,7 @@ export async function fetchQuestionsById(testId) {
 export async function addQuestionToTest(question) {
   await axios.post("/tests/questions/create", question);
 }
+
+export async function addTest(test) {
+  await axios.post("/tests/create", test);
+}
