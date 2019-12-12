@@ -1,0 +1,30 @@
+.start-test-button,
+.end-test-button {
+  display: flex;
+  justify-content: center;
+}
+
+.end-test-button {
+  margin-top: 20px;
+}
+
+.info-block {
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-block p {
+  margin: 0;
+}
+
+.info-block .name-input {
+  position: relative;
+  right: 65px;
+  width: 200px;
+}

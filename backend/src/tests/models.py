@@ -36,3 +36,23 @@ class Question(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class TestResult(models.Model):
+    test = models.ForeignKey(Test, on_delete=models.PROTECT)
+
+    participantName = models.CharField(max_length=30)
+    timeInSeconds = models.IntegerField()
+    finishTime = models.DateTimeField()
+    
+    def __str__(self):
+        return 'test result'
+
+
+class QuestionAnswer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.PROTECT)
+
+    answerText = models.TextField()
+
+    def __str__(self):
+        return self.answerText
