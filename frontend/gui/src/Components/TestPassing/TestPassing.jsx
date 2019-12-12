@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { fetchTests, fetchQuestionsById } from "../../api";
+import {
+  fetchTests,
+  fetchQuestionsById,
+  addTestResult,
+  addQuestionAnswer,
+  fetchTestResults
+} from "../../api";
 import { Button, Progress, Card, Input } from "antd";
 import "./styles.css";
 import useStateWithCallback from "use-state-with-callback";
@@ -21,6 +27,9 @@ export function TestPassing() {
     setProgressInAmount(filledInputs.length);
   });
   const questionsAmount = questions.length;
+  const [newTestResult, setNewTestResult] = useState();
+  const [newAnswers, setNewAnswers] = useState([]);
+  const [hasFinished, setHasFinished] = useState(false);
 
   useEffect(() => {
     if (isChoosingTest) {
@@ -28,8 +37,12 @@ export function TestPassing() {
         const testsWithKeys = tests.map(e => ({ ...e, key: e.id }));
         setTests(testsWithKeys);
       });
-    } else {
+    } else if (!hasFinished) {
       setTimeout(() => setPassedTimeInSeconds(passedTimeInSeconds + 1), 1000);
+      setNewTestResult({
+        ...newTestResult,
+        timeInSeconds: passedTimeInSeconds + 1
+      });
     }
   }, [isChoosingTest, passedTimeInSeconds]);
 
@@ -38,6 +51,48 @@ export function TestPassing() {
       const questionsWithKeys = questions.map(e => ({ ...e, key: e.id }));
       setQuestions(questionsWithKeys);
     });
+  }
+
+  function saveResult() {
+    console.log(newAnswers);
+
+    addTestResult(newTestResult);
+
+    fetchTestResults().then(testResults => {
+      console.log(testResults);
+      console.log(newTestResult);
+      const testResultId = testResults.find(
+        testResult =>
+          testResult.participantName === newTestResult.participantName
+      ).id;
+      let answers = [];
+      for (let i = 0; i < newAnswers.length; i++) {
+        answers.push({ ...newAnswers[i], testResult: testResultId });
+      }
+      for (let i = 0; i < newAnswers.length; i++) {
+        addQuestionAnswer(answers[i]);
+      }
+    });
+  }
+
+  function handleInputChange(event, question) {
+    const index = newAnswers.findIndex(
+      answer => answer.question === question.id
+    );
+
+    let answer = (index !== -1) ? newAnswers[index] : { question: question.id };
+    answer = { ...answer, answerText: event.target.value };
+
+    if (index !== -1) {
+      console.log(index);
+      console.log("index");
+      const answers = [...newAnswers];
+      answers[index] = answer;
+      setNewAnswers(answers);
+    } else {
+      console.log("not index");
+      setNewAnswers([...newAnswers, answer]);
+    }
   }
 
   return (
@@ -62,6 +117,7 @@ export function TestPassing() {
                 type="danger"
                 onClick={() => {
                   setIsChoosingTest(false);
+                  setNewTestResult({ test: chosenTest.id });
                   getQuestions(chosenTest);
                 }}
               >
@@ -75,7 +131,16 @@ export function TestPassing() {
           <Progress percent={progressInPercents} />
           <div className="info-block">
             <p>Участник: </p>
-            <Input className="name-input" placeholder="Введите имя"></Input>
+            <Input
+              className="name-input"
+              placeholder="Введите имя"
+              onChange={event => {
+                setNewTestResult({
+                  ...newTestResult,
+                  participantName: event.target.value
+                });
+              }}
+            ></Input>
             <p className="passed-time">
               Прошло времени: {passedTimeInSeconds} сек.
             </p>
@@ -96,13 +161,20 @@ export function TestPassing() {
                       );
                       setFilledInputs(newFilledInputs);
                     }
+                    handleInputChange(event, question);
                   }}
                 />
               </Card>
             ))}
           </Card>
           <div className="end-test-button">
-            <Button type="danger" onClick={() => {}}>
+            <Button
+              type="danger"
+              onClick={() => {
+                setHasFinished(true);
+                saveResult();
+              }}
+            >
               Закончить тест
             </Button>
           </div>

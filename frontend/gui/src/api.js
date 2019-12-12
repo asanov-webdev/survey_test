@@ -26,3 +26,16 @@ export async function addQuestionToTest(question) {
 export async function addTest(test) {
   await axios.post("/tests/create", test);
 }
+
+export async function fetchTestResults() {
+  const response = await axios.get("/tests/test_results/");
+  return response.data;
+}
+
+export async function addTestResult(testResult) {
+  await axios.post("/tests/test_results/create", testResult).then(() => {});
+}
+
+export async function addQuestionAnswer(questionAnswer) {
+  await axios.post("/tests/question_answers/create", questionAnswer);
+}
