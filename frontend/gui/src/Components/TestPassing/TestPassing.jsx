@@ -55,9 +55,7 @@ export function TestPassing() {
 
   function saveResult() {
     console.log(newAnswers);
-
     addTestResult(newTestResult);
-
     fetchTestResults().then(testResults => {
       console.log(testResults);
       console.log(newTestResult);

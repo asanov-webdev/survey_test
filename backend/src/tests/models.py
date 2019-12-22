@@ -1,5 +1,6 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from datetime import datetime
 
 
 QUESTION_ANSWER_TYPE_CHOICES = [
@@ -26,7 +27,7 @@ class Question(models.Model):
     answerType = models.CharField(
         max_length=2,
         choices=QUESTION_ANSWER_TYPE_CHOICES,
-        default='CH',
+        default='TE',
         null=True,
         blank=True
     )
@@ -39,18 +40,20 @@ class Question(models.Model):
 
 
 class TestResult(models.Model):
-    test = models.ForeignKey(Test, on_delete=models.PROTECT)
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
 
     participantName = models.CharField(max_length=30)
     timeInSeconds = models.IntegerField()
-    finishTime = models.DateTimeField()
-    
+    finishTime = models.DateTimeField(default=datetime.now())
+
     def __str__(self):
         return 'test result'
 
 
 class QuestionAnswer(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.PROTECT)
+    testResult = models.ForeignKey(
+        TestResult, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     answerText = models.TextField()
 

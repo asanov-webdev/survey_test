@@ -41,3 +41,26 @@
 .new-question-title-input {
   width: 50%;
 }
+
+.editing-card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editing-card-title p {
+  margin: 0;
+}
+
+.editing-card-title .anticon {
+  margin-left: 10px;
+}
+
+.editing-card-title .title-input,
+.editing-card-title .question-text-input {
+  width: 60%;
+}
+
+.editing-card-title .question-position-input {
+  width: 10%;
+}

@@ -1,12 +1,12 @@
 import axios from "./axios-config";
 
 export async function fetchTests() {
-  const response = await axios.get("/tests/");
-  return response.data;
+  const data = await axios.get("/tests/").then(response => response.data);
+  return data;
 }
 
 export async function fetchQuestionsById(testId) {
-  const questions = await axios
+  const data = await axios
     .get("/tests/questions/")
     .then(response =>
       response.data
@@ -16,26 +16,58 @@ export async function fetchQuestionsById(testId) {
             question1.positionInTest - question2.positionInTest
         )
     );
-  return questions;
+  console.log(data);
+  return data;
 }
 
 export async function addQuestionToTest(question) {
-  await axios.post("/tests/questions/create", question);
+  const data = await axios.post("/tests/questions/create", question).then(response => response.data);
+  return data;
+}
+
+export async function destroyQuestion(question) {
+  const url = '/tests/questions/destroy/' + question.id;
+  const data = await axios.delete(url, question).then(response => response.data);
+  return data;
 }
 
 export async function addTest(test) {
-  await axios.post("/tests/create", test);
+  const data = await axios.post("/tests/create", test).then(response => response.data);
+  return data;
+}
+
+export async function updateTestTitle(test, title) {
+  test.title = title;
+  const url = '/tests/update/' + test.id;
+  const data = await axios.put(url, test).then(response => response.data);
+  return data;
+}
+
+export async function updateQuestion(question, text, positionInTest) {
+  question.text = text;
+  question.positionInTest = positionInTest;
+  const url = '/tests/questions/update/' + question.id;
+  const data = await axios.put(url, question).then(response => response.data);
+  return data;
+}
+
+export async function destroyTest(test) {
+  const url = '/tests/destroy/' + test.id;
+  const data = await axios.delete(url, test).then(response => response.data);
+  return data;
 }
 
 export async function fetchTestResults() {
-  const response = await axios.get("/tests/test_results/");
-  return response.data;
+  const data = await axios.get("/tests/test_results/").then(response => response.data);
+  return data;
 }
 
 export async function addTestResult(testResult) {
-  await axios.post("/tests/test_results/create", testResult).then(() => {});
+  const data = await axios.post("/tests/test_results/create", testResult).then(response => response.data);
+  return data;
 }
 
 export async function addQuestionAnswer(questionAnswer) {
-  await axios.post("/tests/question_answers/create", questionAnswer);
+  const data = await axios.post("/tests/question_answers/create", questionAnswer).then(response => response.data);
+  return data;
 }
