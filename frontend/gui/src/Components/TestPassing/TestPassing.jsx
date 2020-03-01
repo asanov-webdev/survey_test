@@ -55,8 +55,7 @@ export function TestPassing() {
 
   function saveResult() {
     console.log(newAnswers);
-    addTestResult(newTestResult);
-    fetchTestResults().then(testResults => {
+    addTestResult(newTestResult).then(() => fetchTestResults().then(testResults => {
       console.log(testResults);
       console.log(newTestResult);
       const testResultId = testResults.find(
@@ -70,7 +69,7 @@ export function TestPassing() {
       for (let i = 0; i < newAnswers.length; i++) {
         addQuestionAnswer(answers[i]);
       }
-    });
+    }));
   }
 
   function handleInputChange(event, question) {

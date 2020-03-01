@@ -20,12 +20,13 @@ export function Test(props) {
     },
     newQuestion => {
       if (newQuestion.positionInTest) {
+        console.log(newQuestion.test);
         addQuestionToTest(newQuestion);
-        setNewQuestion({ test: props.test.id });
       }
     }
   );
   const [isEditingTitle, setIsEditingTitle] = useState(false);
+  
   const [editingQuestionId, setEditingQuestionId] = useState(-1);
   const [temporaryTitle, setTemporaryTitle] = useState(props.test.title);
   const [temporaryQuestionText, setTemporaryQuestionText] = useState("");
@@ -33,13 +34,16 @@ export function Test(props) {
     -1
   );
 
+  console.log(props.test);
+
   function addQuestion() {
-    const lastQuestion = questions.reduce(function(prev, current) {
+    console.log(questions);
+    const lastQuestion = questions.length !== 0 && questions.reduce(function(prev, current) {
       return prev.positionInTest < current.positionInTest ? current : prev;
     });
     setNewQuestion({
       ...newQuestion,
-      positionInTest: lastQuestion.positionInTest
+      positionInTest: lastQuestion ? lastQuestion.positionInTest + 1 : 1
     });
   }
 
@@ -150,6 +154,7 @@ export function Test(props) {
                     <Icon
                       type="edit"
                       onClick={() => {
+                        console.log(question);
                         setEditingQuestionId(
                           editingQuestionId === -1 ? question.id : -1
                         );

@@ -17,8 +17,7 @@ export function TestList() {
   ]);
 
   function saveTest() {
-    addTest(newTest);
-    fetchTests().then(tests => {
+    addTest(newTest).then(() => fetchTests().then(tests => {
       console.log(tests);
       const testId = tests.find(test => test.title === newTest.title).id;
       let questions = [];
@@ -28,7 +27,7 @@ export function TestList() {
       for (let i = 0; i < questions.length; i++) {
         addQuestionToTest(questions[i]);
       }
-    });
+    }));
   }
 
   useEffect(() => {
