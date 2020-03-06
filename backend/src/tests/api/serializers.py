@@ -1,28 +1,39 @@
 from rest_framework import serializers
 
-from tests.models import Test, Question, TestResult, QuestionAnswer
+from tests.models import Test, Question, TestResult, QuestionAnswer, QuestionImage, AnswerVariant
 
 
 class TestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Test
-        fields = ('id', 'title')
+        fields = ('__all__')
 
 
 class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ('id', 'test', 'text', 'positionInTest', 'answerType',
-                  'answerVariants', 'correctAnswerVariants')
+        fields = ('__all__')
 
 
 class TestResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestResult
-        fields = ('id', 'test', 'participantName', 'timeInSeconds', 'finishTime')
+        fields = ('__all__')
 
 
 class QuestionAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = QuestionAnswer
-        fields = ('id', 'testResult', 'question', 'answerText')
+        fields = ('__all__')
+
+
+class QuestionImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QuestionImage
+        fields = ('__all__')
+
+
+class QuestionAnswerVariantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnswerVariant
+        fields = ('__all__')

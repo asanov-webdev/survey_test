@@ -125,9 +125,22 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'media'), 
+    os.path.join(BASE_DIR, 'resources'), 
+)
+
+MEDIA_URL = '/media/'  # часть пути в URL
+
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # папка на диске
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

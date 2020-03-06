@@ -1,6 +1,15 @@
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from datetime import datetime
+import time
+
+
+QUESTION_DISPLAY_PATTERN_CHOICES = [
+    ('1', 'VERTICAL_TEXT_PICTURE'),
+    ('2', 'VERTICAL_PICTURE_TEXT'),
+    ('3', 'HORIZONTAL_TEXT_PICTURE'),
+    ('4', 'HORIZONTAL_PICTURE_TEXT'),
+]
 
 
 QUESTION_ANSWER_TYPE_CHOICES = [
@@ -21,9 +30,17 @@ class Test(models.Model):
 class Question(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
 
-    text = models.TextField()
+    interrogation = models.TextField(default=None)
+    text = models.TextField(null=True, blank=True)
     positionInTest = models.PositiveSmallIntegerField(
         default=None, null=True, blank=True)
+    displayPattern = models.CharField(
+        max_length=1,
+        choices=QUESTION_DISPLAY_PATTERN_CHOICES,
+        default='1',
+        null=True,
+        blank=True
+    )
     answerType = models.CharField(
         max_length=2,
         choices=QUESTION_ANSWER_TYPE_CHOICES,
@@ -31,12 +48,30 @@ class Question(models.Model):
         null=True,
         blank=True
     )
-    answerVariants = ArrayField(models.TextField(), null=True, blank=True)
-    correctAnswerVariants = ArrayField(
-        models.SmallIntegerField(), null=True, blank=True)
 
     def __str__(self):
-        return self.text
+        return self.interrogation
+
+
+class AnswerVariant(models.Model):
+    question = models.name = models.ForeignKey(
+        'Question', on_delete=models.CASCADE, blank=True, null=True)
+
+    value = models.TextField()
+    is_correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return '{} ({})'.format(self.value, self.question.interrogation)
+
+
+class QuestionImage(models.Model):
+    question = models.name = models.ForeignKey(
+        'Question', on_delete=models.CASCADE, blank=True, null=True)
+
+    image_file = models.ImageField()
+
+    def __str__(self):
+        return self.question.interrogation
 
 
 class TestResult(models.Model):
@@ -45,9 +80,10 @@ class TestResult(models.Model):
     participantName = models.CharField(max_length=30)
     timeInSeconds = models.IntegerField()
     finishTime = models.DateTimeField(default=datetime.now())
+    is_finished = models.BooleanField(default=False)
 
     def __str__(self):
-        return 'test result'
+        return '{}, finished in {} seconds at {}'.format(self.participantName, self.timeInSeconds, self.finishTime.strftime("%H:%M:%S %Y.%m.%d"))
 
 
 class QuestionAnswer(models.Model):
@@ -55,7 +91,7 @@ class QuestionAnswer(models.Model):
         TestResult, on_delete=models.CASCADE, default=None, null=True, blank=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
-    answerText = models.TextField()
+    value = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return self.answerText
+        return self.value
