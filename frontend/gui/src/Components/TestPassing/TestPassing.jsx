@@ -203,14 +203,62 @@ export function TestPassing() {
           ) : (
             <div className="test-wrapper">
               <div className="test-question">
-                <div className="question-text">
-                  <p>{currentQuestion.text}</p>
-                </div>
-                {currentQuestionImages.map(image => (
-                  <div className="question-picture">
-                    <img src={image.image_file.replace("media", "static")} />
+                {currentQuestion.displayPattern === "1" && (
+                  <div className="question-content-vert">
+                    <div className="question-text">
+                      <p>{currentQuestion.text}</p>
+                    </div>
+                    {currentQuestionImages.map(image => (
+                      <div className="question-picture">
+                        <img
+                          src={image.image_file.replace("media", "static")}
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                )}
+                {currentQuestion.displayPattern === "2" && (
+                  <div className="question-content-vert">
+                    {currentQuestionImages.map(image => (
+                      <div className="question-picture">
+                        <img
+                          src={image.image_file.replace("media", "static")}
+                        />
+                      </div>
+                    ))}
+                    <div className="question-text">
+                      <p>{currentQuestion.text}</p>
+                    </div>
+                  </div>
+                )}
+                {currentQuestion.displayPattern === "3" && (
+                  <div className="question-content-hor">
+                    <div className="question-text-hor">
+                      <p>{currentQuestion.text}</p>
+                    </div>
+                    {currentQuestionImages.map(image => (
+                      <div className="question-picture">
+                        <img
+                          src={image.image_file.replace("media", "static")}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {currentQuestion.displayPattern === "4" && (
+                  <div className="question-content-hor">
+                    {currentQuestionImages.map(image => (
+                      <div className="question-picture">
+                        <img
+                          src={image.image_file.replace("media", "static")}
+                        />
+                      </div>
+                    ))}
+                    <div className="question-text-hor">
+                      <p>{currentQuestion.text}</p>
+                    </div>
+                  </div>
+                )}
                 <div className="question-interrogation">
                   {currentQuestion.interrogation}
                 </div>
@@ -273,7 +321,7 @@ export function TestPassing() {
                       setCurrentQuestionNumber(currentQuestionNumber + 1);
                       console.log(chosenVariants);
                       chosenVariants = [];
-                      setAnswerText('');
+                      setAnswerText("");
                       console.log(chosenVariants);
                     }}
                   >

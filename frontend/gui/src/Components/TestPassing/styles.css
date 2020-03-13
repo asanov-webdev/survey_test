@@ -42,6 +42,24 @@
   align-items: center;
 }
 
+.question-content-vert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question-content-hor {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.question-text-hor {
+  margin-bottom: 50px;
+  max-width: 200px;
+}
+
 .question-text,
 .question-picture {
   margin-bottom: 50px;
