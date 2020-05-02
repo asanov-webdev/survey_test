@@ -19,6 +19,11 @@ QUESTION_ANSWER_TYPE_CHOICES = [
     ('TE', 'TEXT'),
 ]
 
+MODULE_USER_STATUS_CHOICES = [
+    ('1', 'STUDENT'),
+    ('2', 'WORKER'),
+    ('3', 'ADMIN'),
+]
 
 class Test(models.Model):
     title = models.CharField(max_length=120)
@@ -95,3 +100,19 @@ class QuestionAnswer(models.Model):
 
     def __str__(self):
         return self.value
+
+
+class ModuleUser(models.Model):
+    name = models.CharField(max_length=50);
+    login = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+    status = models.CharField(
+        max_length=1,
+        choices=MODULE_USER_STATUS_CHOICES,
+        default='1',
+        null=True,
+        blank=True
+    )
+
+    def __str__(self):
+        return '{} ({})'.format(self.login, self.status)

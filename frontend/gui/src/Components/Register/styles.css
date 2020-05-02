@@ -1,0 +1,61 @@
+.page-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f6f6f6;
+}
+
+.register-block {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  padding: 100px 50px;
+  background: #fff;
+  padding-bottom: 0;
+  position: relative;
+}
+
+.title {
+  color: #ef945d;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 300px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background: #f6f6f6;
+}
+
+input.radio {
+  width: 20px;
+  margin: 0;
+}
+
+.radios {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-block {
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-decoration: underline;
+  position: absolute;
+  width: 398px;
+  bottom: 30px;
+}

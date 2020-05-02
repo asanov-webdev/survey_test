@@ -1,8 +1,8 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
 
-from tests.models import Test, Question, TestResult, QuestionAnswer, QuestionImage, AnswerVariant
+from tests.models import Test, Question, TestResult, QuestionAnswer, QuestionImage, AnswerVariant, ModuleUser
 from .serializers import TestSerializer, QuestionSerializer, TestResultSerializer, QuestionAnswerSerializer, QuestionImageSerializer
-from .serializers import QuestionAnswerVariantSerializer
+from .serializers import QuestionAnswerVariantSerializer, ModuleUserSerializer
 
 
 class QuestionUpdateView(UpdateAPIView):
@@ -68,3 +68,13 @@ class QuestionImageListView(ListAPIView):
 class QuestionAnswerVariantsListView(ListAPIView):
     queryset = AnswerVariant.objects.all()
     serializer_class = QuestionAnswerVariantSerializer
+
+
+class ModuleUserCreateView(CreateAPIView):
+    queryset = ModuleUser.objects.all()
+    serializer_class = ModuleUserSerializer
+
+
+class ModuleUserListView(ListAPIView):
+    queryset = ModuleUser.objects.all()
+    serializer_class = ModuleUserSerializer

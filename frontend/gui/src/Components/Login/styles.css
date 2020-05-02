@@ -1,0 +1,50 @@
+.page-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f6f6f6;
+}
+
+.login-block {
+  width: 500px;
+  height: 500px;
+  border: 1px solid black;
+  padding: 100px 50px;
+  padding-bottom: 0;
+  background: #fff;
+  border-radius: 10px;
+  position: relative;
+}
+
+.title {
+  color: #ef945d;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 300px;
+  margin-bottom: 20px;
+  background: #f6f6f6;
+}
+
+.input-block {
+  margin-top: 100px;
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.register {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  color: black;
+  text-decoration: underline;
+  position: absolute;
+  width: 398px;
+  bottom: 30px;
+}
