@@ -9,15 +9,11 @@ export const Sidebar = () => {
       icon: "",
     },
     {
-        title: "Тесты",
-        icon: "",
-      },
-    {
-      title: "Для кого",
+      title: "Тесты",
       icon: "",
     },
     {
-      title: "Настройки",
+      title: "Статистика",
       icon: "",
     },
   ];

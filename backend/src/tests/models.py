@@ -32,6 +32,12 @@ class Test(models.Model):
         return self.title
 
 
+class TestImage(models.Model):
+    test = models.name = models.ForeignKey(
+        'Test', related_name='test', on_delete=models.CASCADE, blank=True, null=True)
+    image_file = models.ImageField()
+
+
 class Question(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
 

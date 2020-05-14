@@ -18,7 +18,7 @@
 }
 
 .title {
-  color: #ef945d;
+  /* color: #ef945d; */
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -31,11 +31,29 @@ input {
 }
 
 .input-block {
-  margin-top: 100px;
+  margin-top: 50px;
   width: 400px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.login-block .confirm-block {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 398px;
+  bottom: 180px;
+}
+
+.confirm-button {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+}
+
+.confirm-button:hover {
+  cursor: pointer;
 }
 
 .register {

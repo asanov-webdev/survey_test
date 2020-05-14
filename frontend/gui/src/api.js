@@ -118,3 +118,10 @@ export async function loginModuleUser(login, password) {
     );
   return user && user.password.localeCompare(password);
 }
+
+export async function fetchTestImages() {
+  const data = await axios
+    .get("/tests/test_images/")
+    .then((response) => response.data);
+  return data;
+}

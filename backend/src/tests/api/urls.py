@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import TestListView, QuestionListView, QuestionCreateView, TestCreateView, TestResultCreateView, QuestionAnswerCreateView
 from .views import TestResultListView, TestDestroyView, QuestionDestroyView, TestUpdateView, QuestionUpdateView, QuestionImageListView
-from .views import QuestionAnswerVariantsListView, ModuleUserListView
+from .views import QuestionAnswerVariantsListView, ModuleUserListView, ModuleUserCreateView, TestImageListView
 
 
 urlpatterns = [
@@ -18,6 +18,7 @@ urlpatterns = [
     path('questions/answer_variants/', QuestionAnswerVariantsListView.as_view()),
     path('module_users/', ModuleUserListView.as_view()),
     path('module_users/create', ModuleUserCreateView.as_view()),
+    path('test_images/', TestImageListView.as_view()),
     path('test_results/', TestResultListView.as_view()),
     path('test_results/create', TestResultCreateView.as_view()),
     path('question_answers/create', QuestionAnswerCreateView.as_view()),

@@ -1,17 +1,21 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import { TestList } from "./components/TestList/TestList";
 import { TestPassing } from "./components/TestPassing/TestPassing";
 import { MainPage } from "./components/MainPage/MainPage";
 import { Login } from "./components/Login";
 import { Register } from "./components/Register";
+import { createBrowserHistory } from "history";
+import { PrivateRoute } from "./privateRoute";
+
+const history = createBrowserHistory();
 
 export const BaseRouter = () => (
-  <div>
-    <Route exact path="/" component={MainPage} />
-    <Route path="/editing" component={TestList} />
-    <Route path="/passing" component={TestPassing} />
+  <Router history={history}>
     <Route path="/login" component={Login} />
     <Route path="/register" component={Register} />
-  </div>
+    <PrivateRoute exact path="/" component={MainPage} />
+    <PrivateRoute path="/editing" component={TestList} />
+    <PrivateRoute path="/passing" component={TestPassing} />
+  </Router>
 );

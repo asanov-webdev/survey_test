@@ -7,7 +7,7 @@ export const SidebarItem = (props) => {
     <div className="sidebar-item">
       {/* <img className="icon" src={props.icon} alt=''/> */}
       <div className="title">{props.title}</div>
-      <img className="more" src={expand} />
+      {/* <img className="more" src={expand} /> */}
     </div>
   );
 };

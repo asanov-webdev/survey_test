@@ -4,11 +4,17 @@
   justify-content: space-between;
   border: 0.5px solid black;
   font-weight: 600;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .header .block {
   display: flex;
   align-items: center;
+}
+
+.header .block .phrase {
+  margin-left: 30px;
 }
 
 .header .icon {
@@ -26,11 +32,21 @@
 }
 
 .header .phrase {
-  color: #ef945d;
+  /* color: #ef945d; */
+  color: rgba(0, 0, 0, 0.65);
   font-size: 20px;
   margin: 0 40px;
 }
 
 .header .phrase:last-of-type {
   margin: 0px;
+}
+
+.block .exit {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.block .exit:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

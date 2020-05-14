@@ -4,10 +4,10 @@ import { Content } from "../Content/Content";
 import { Sidebar } from "../Sidebar/Sidebar";
 import "./styles.css";
 
-export const MainPage = () => {
+export const MainPage = (props) => {
   return (
     <React.Fragment>
-      <Header />
+      <Header history={props.history} />
       <div className="subheader-block">
         <Sidebar />
         <Content />

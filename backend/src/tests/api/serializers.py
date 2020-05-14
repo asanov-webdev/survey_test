@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from tests.models import Test, Question, TestResult, QuestionAnswer, QuestionImage, AnswerVariant, ModuleUser
+from tests.models import Test, Question, TestResult, QuestionAnswer, QuestionImage, AnswerVariant, ModuleUser, TestImage
 
 
 class TestSerializer(serializers.ModelSerializer):
@@ -42,4 +42,10 @@ class QuestionAnswerVariantSerializer(serializers.ModelSerializer):
 class ModuleUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = ModuleUser
+        fields = ('__all__')
+
+
+class TestImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TestImage
         fields = ('__all__')
