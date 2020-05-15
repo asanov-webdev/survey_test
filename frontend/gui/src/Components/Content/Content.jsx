@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 import { TestList } from "./TestList";
 import { Test } from "./Test";
+import { Statistics } from "./Statistics";
 
 export const Content = (props) => {
   const [testId, setTestId] = useState();
@@ -12,10 +13,16 @@ export const Content = (props) => {
 
   return (
     <div className="content">
-      {testId ? (
-        <Test id={testId} callback={idCallback} />
+      {props.tab.statistics ? (
+        <Statistics />
       ) : (
-        <TestList callback={idCallback} />
+        <div>
+          {testId ? (
+            <Test id={testId} callback={idCallback} />
+          ) : (
+            <TestList callback={idCallback} />
+          )}
+        </div>
       )}
     </div>
   );

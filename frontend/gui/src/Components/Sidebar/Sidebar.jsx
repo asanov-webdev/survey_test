@@ -2,14 +2,10 @@ import React from "react";
 import "./styles.css";
 import { SidebarItem } from "../Sidebar/SidebarItem";
 
-export const Sidebar = () => {
+export const Sidebar = (props) => {
   const items = [
     {
       title: "Опросы",
-      icon: "",
-    },
-    {
-      title: "Тесты",
       icon: "",
     },
     {
@@ -21,7 +17,7 @@ export const Sidebar = () => {
   return (
     <div className="sidebar">
       {items.map((item) => (
-        <SidebarItem title={item.title} />
+        <SidebarItem title={item.title} callback={props.callback} />
       ))}
     </div>
   );

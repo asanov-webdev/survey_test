@@ -125,3 +125,14 @@ export async function fetchTestImages() {
     .then((response) => response.data);
   return data;
 }
+
+export async function fetchUserTestResults(login) {
+  const data = await axios
+    .get("/tests/test_results/")
+    .then((response) =>
+      response.data.filter(
+        (testResult) => testResult.participantName.localeCompare(login)
+      )
+    );
+  return data;
+}
