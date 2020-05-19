@@ -25,6 +25,7 @@ MODULE_USER_STATUS_CHOICES = [
     ('3', 'ADMIN'),
 ]
 
+
 class Test(models.Model):
     title = models.CharField(max_length=120)
 
@@ -109,7 +110,7 @@ class QuestionAnswer(models.Model):
 
 
 class ModuleUser(models.Model):
-    name = models.CharField(max_length=50);
+    name = models.CharField(max_length=50)
     login = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
     status = models.CharField(
@@ -119,6 +120,8 @@ class ModuleUser(models.Model):
         null=True,
         blank=True
     )
+    group = models.CharField(max_length=6, default=None, null=True)
+    grade = models.PositiveSmallIntegerField(default=1)
 
     def __str__(self):
         return '{} ({})'.format(self.login, self.status)

@@ -50,3 +50,17 @@
 button:hover {
   cursor: pointer;
 }
+
+.statistics-row {
+  margin-bottom: 20px;
+}
+
+.survey-stats-margin-top,
+.group-stats-margin-top {
+  margin-top: 20px;
+}
+
+.student-login:hover,
+.student-group:hover {
+  cursor: pointer;
+}

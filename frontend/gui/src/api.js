@@ -130,9 +130,16 @@ export async function fetchUserTestResults(login) {
   const data = await axios
     .get("/tests/test_results/")
     .then((response) =>
-      response.data.filter(
-        (testResult) => testResult.participantName.localeCompare(login)
+      response.data.filter((testResult) =>
+        testResult.participantName.localeCompare(login)
       )
     );
+  return data;
+}
+
+export async function fetchAllStudents() {
+  const data = await axios
+    .get("/tests/module_users/")
+    .then((response) => response.data.filter((user) => user.status === "1"));
   return data;
 }
